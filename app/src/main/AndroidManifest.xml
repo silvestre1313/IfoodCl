@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IfoodCl">
         <activity
+            android:name=".activity.NovoProdutoEmpresaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ConfiguracoesEmpresaActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.EmpresaActivity"
             android:exported="false" />
         <activity

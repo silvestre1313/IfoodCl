@@ -38,11 +38,10 @@ public class AutenticacaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autenticacao);
-        getSupportActionBar().hide();
 
         inicializarComponentes();
         autenticacao = ConfiguracaoFirebase.getReferenciaAutenticacao();
-        //autenticacao.signOut();
+        autenticacao.signOut();
 
         verificarUsuarioLogado();
 
