@@ -10,11 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IfoodCl">
         <activity
+            android:name=".activity.ConfiguracoesUsuarioActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.HomeActivity"/>
+        <activity
             android:name=".activity.NovoProdutoEmpresaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activity.EmpresaActivity" />
         <activity
             android:name=".activity.ConfiguracoesEmpresaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activity.EmpresaActivity" />
         <activity
             android:name=".activity.EmpresaActivity"
             android:exported="false" />
