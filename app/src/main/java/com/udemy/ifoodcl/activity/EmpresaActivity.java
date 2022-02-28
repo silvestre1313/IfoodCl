@@ -98,7 +98,6 @@ public class EmpresaActivity extends AppCompatActivity {
 
                 for (DataSnapshot ds: snapshot.getChildren()){
                     produtos.add(ds.getValue(Produto.class));
-                    Log.d("lista", "onDataChange: " + produtos.size());
                 }
 
                 adapterProduto.notifyDataSetChanged();
