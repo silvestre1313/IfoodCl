@@ -19,8 +19,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.udemy.ifoodcl.R;
 import com.udemy.ifoodcl.helper.ConfiguracaoFirebase;
 import com.udemy.ifoodcl.helper.Permissao;
@@ -41,6 +46,7 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
     };
     private static final int SELECAO_GALERIA = 200;
     private StorageReference storageReference;
+    private DatabaseReference firebaseRef;
     private String idUsuarioLogado;
     private String urlImagemSelecionada = "";
 
@@ -51,6 +57,7 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
 
         inicializarComponentes();
         storageReference = ConfiguracaoFirebase.getFirebaseStorage();
+        firebaseRef = ConfiguracaoFirebase.getFirebase();
         idUsuarioLogado = UsuarioFirebase.getIdUsuario();
 
         Permissao.validarPermissoes(permissoesNecessarias, this, 1);
@@ -70,6 +77,43 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
                 if (i.resolveActivity(getPackageManager()) != null){
                     startActivityForResult(i, SELECAO_GALERIA);
                 }
+            }
+        });
+
+        recuperarDadosEmpresa();
+
+    }
+
+    private void recuperarDadosEmpresa(){
+
+        DatabaseReference empresaRef = firebaseRef
+                .child("empresas")
+                .child(idUsuarioLogado);
+        empresaRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.getValue() != null){
+                    Empresa empresa = snapshot.getValue(Empresa.class);
+                    editEmpresaNome.setText(empresa.getNome());
+                    editEmpresaCategoria.setText(empresa.getCategoria());
+                    editEmpresaTaxa.setText(empresa.getPrecoEntrega().toString());
+                    editEmpresaTempo.setText(empresa.getTempo());
+
+                    urlImagemSelecionada = empresa.getUrlImagem();
+                    if (urlImagemSelecionada != ""){
+                        Picasso.get()
+                                .load(urlImagemSelecionada)
+                                .into(imagePerfilEmpresa);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -104,6 +148,7 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
                     byte[] dadosImagem = baos.toByteArray();
 
                     StorageReference imagemRef = storageReference
+                            .child("ifood")
                             .child("imagens")
                             .child("empresas")
                             .child(idUsuarioLogado + "jpeg");

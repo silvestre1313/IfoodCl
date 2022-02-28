@@ -10,7 +10,7 @@ public class Empresa {
     private String nome;
     private String tempo;
     private String categoria;
-    private double precoEntrega;
+    private Double precoEntrega;
 
     public Empresa() {
     }
@@ -62,11 +62,11 @@ public class Empresa {
         this.categoria = categoria;
     }
 
-    public double getPrecoEntrega() {
+    public Double getPrecoEntrega() {
         return precoEntrega;
     }
 
-    public void setPrecoEntrega(double precoEntrega) {
+    public void setPrecoEntrega(Double precoEntrega) {
         this.precoEntrega = precoEntrega;
     }
 }
