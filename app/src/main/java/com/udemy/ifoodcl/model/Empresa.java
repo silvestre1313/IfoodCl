@@ -3,7 +3,9 @@ package com.udemy.ifoodcl.model;
 import com.google.firebase.database.DatabaseReference;
 import com.udemy.ifoodcl.helper.ConfiguracaoFirebase;
 
-public class Empresa {
+import java.io.Serializable;
+
+public class Empresa implements Serializable {
 
     private String idUsuario;
     private String urlImagem;

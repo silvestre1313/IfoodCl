@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +26,7 @@ import com.udemy.ifoodcl.R;
 
 import com.udemy.ifoodcl.adapter.AdapterEmpresa;
 import com.udemy.ifoodcl.helper.ConfiguracaoFirebase;
+import com.udemy.ifoodcl.helper.RecyclerItemClickListener;
 import com.udemy.ifoodcl.model.Empresa;
 import com.udemy.ifoodcl.model.Produto;
 
@@ -57,6 +60,31 @@ public class HomeActivity extends AppCompatActivity {
         recyclerEmpresa.setAdapter(adapterEmpresa);
 
         recuperarEmpresas();
+
+        recyclerEmpresa.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, recyclerEmpresa,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                Empresa empresaSelecionada = empresas.get(position);
+                                Intent i = new Intent(HomeActivity.this, CardapioActivity.class);
+                                i.putExtra("empresa", empresaSelecionada);
+                                startActivity(i);
+
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        })
+        );
 
     }
 

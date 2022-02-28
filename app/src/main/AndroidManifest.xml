@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.udemy.ifoodcl">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IfoodCl">
         <activity
+            android:name=".activity.CardapioActivity"
+            android:parentActivityName=".activity.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ConfiguracoesUsuarioActivity"
             android:exported="false"
-            android:parentActivityName=".activity.HomeActivity"/>
+            android:parentActivityName=".activity.HomeActivity" />
         <activity
             android:name=".activity.NovoProdutoEmpresaActivity"
             android:exported="false"
