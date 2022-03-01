@@ -15,10 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -223,8 +220,8 @@ public class ConfiguracoesEmpresaActivity extends AppCompatActivity {
     }
 
     private void inicializarComponentes(){
-        editEmpresaNome = findViewById(R.id.editEmpresaNome);
-        editEmpresaCategoria = findViewById(R.id.editEmpresaCategoria);
+        editEmpresaNome = findViewById(R.id.editUsuarioNome);
+        editEmpresaCategoria = findViewById(R.id.editUsuarioEndereco);
         editEmpresaTaxa = findViewById(R.id.editEmpresaTaxa);
         editEmpresaTempo = findViewById(R.id.editEmpresaTempo);
         imagePerfilEmpresa = findViewById(R.id.imagePerfilEmpresa);
