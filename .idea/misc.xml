@@ -5,7 +5,7 @@
       <map>
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/drawable/bg_edit_text.xml" value="0.101" />
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/activity_autenticacao.xml" value="0.25" />
-        <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/activity_cardapio.xml" value="0.18" />
+        <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/activity_cardapio.xml" value="0.33" />
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/activity_configuracoes_empresa.xml" value="0.15" />
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/activity_configuracoes_usuario.xml" value="0.22" />
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/activity_empresa.xml" value="0.25" />
@@ -17,6 +17,7 @@
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/adapter_produto.xml" value="0.25" />
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/divisor.xml" value="0.1" />
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/layout/toolbar.xml" value="0.22" />
+        <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/menu/menu_cardapio.xml" value="0.1" />
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/menu/menu_empresa.xml" value="0.33" />
         <entry key="..\:/Users/patri/AndroidStudioProjects/IfoodCl/app/src/main/res/menu/menu_usuario.xml" value="0.1" />
       </map>
