@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,6 +55,7 @@ public class CardapioActivity extends AppCompatActivity {
     private int qtdItensCarrinho;
     private Double totalCarrinho;
     private TextView textCarrinhoQtd, textCarrinhoTotal;
+    private int metodoPagamento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,11 +254,51 @@ public class CardapioActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menuPedido:
-
+                confirmarPedido();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void confirmarPedido() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Selecione um metodo de pagamento");
+
+        CharSequence[] itens = new CharSequence[]{
+            "Dinheiro", "Maquina de cartão"
+        };
+        builder.setSingleChoiceItems(itens, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                    metodoPagamento = i;
+            }
+        });
+
+        EditText editObservacao = new EditText(this);
+        editObservacao.setHint("Digite uma observação");
+        builder.setView(editObservacao);
+
+        builder.setPositiveButton("Confirmar", (dialogInterface, i) -> {
+            String observacao = editObservacao.getText().toString();
+            pedidoRecuperado.setMetodoPagamento(metodoPagamento);
+            pedidoRecuperado.setObservacao(observacao);
+            pedidoRecuperado.setStatus("Confirmado");
+            pedidoRecuperado.confirmar();
+            pedidoRecuperado.remover();
+            pedidoRecuperado = null;
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 
     private void inicializarComponentes(){
