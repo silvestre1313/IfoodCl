@@ -33,6 +33,7 @@ import com.udemy.ifoodcl.model.Pedido;
 import com.udemy.ifoodcl.model.Produto;
 import com.udemy.ifoodcl.model.Usuario;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,9 @@ public class CardapioActivity extends AppCompatActivity {
     private String idUsurioLogado;
     private Usuario usuario;
     private Pedido pedidoRecuperado;
+    private int qtdItensCarrinho;
+    private Double totalCarrinho;
+    private TextView textCarrinhoQtd, textCarrinhoTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,7 +169,46 @@ public class CardapioActivity extends AppCompatActivity {
 
     private void recuperarPedido() {
 
+        DatabaseReference pedidoRef = firebaseRef
+                .child("pedidos_usuario")
+                .child(idEmpresa)
+                .child(idUsurioLogado);
+        pedidoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                qtdItensCarrinho = 0;
+                totalCarrinho = 0.0;
+                itensCarrinho = new ArrayList<>();
+
+                if (snapshot.getValue() != null){
+
+                    pedidoRecuperado = snapshot.getValue(Pedido.class);
+                    itensCarrinho = pedidoRecuperado.getItens();
+
+                    for (ItemPedido itemPedido: itensCarrinho){
+
+                        int qtde = itemPedido.getQuantidade();
+                        Double preco = itemPedido.getPreco();
+
+                        totalCarrinho += (qtde * preco);
+                        qtdItensCarrinho += qtde;
+
+                    }
+                }
+
+                DecimalFormat df = new DecimalFormat("0.00");
+
+                textCarrinhoQtd.setText("qtd: " + String.valueOf(qtdItensCarrinho));
+                textCarrinhoTotal.setText("R$ " + df.format(totalCarrinho));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
@@ -221,6 +264,8 @@ public class CardapioActivity extends AppCompatActivity {
         recyclerProdutosCardapio = findViewById(R.id.recyclerProdutosCardapio);
         imageEmpresaCardapio = findViewById(R.id.imageEmpresaCardapio);
         textNomeEmpresaCardapio = findViewById(R.id.textNomeEmpresaCardapio);
+        textCarrinhoQtd = findViewById(R.id.textCarrinhoQtd);
+        textCarrinhoTotal = findViewById(R.id.textCarrinhoTotal);
 
     }
 
