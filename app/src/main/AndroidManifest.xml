@@ -12,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IfoodCl">
         <activity
-            android:name=".activity.CardapioActivity"
-            android:parentActivityName=".activity.HomeActivity"
+            android:name=".activity.PedidosActivity"
+            android:parentActivityName=".activity.EmpresaActivity"
             android:exported="false" />
+        <activity
+            android:name=".activity.CardapioActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.HomeActivity" />
         <activity
             android:name=".activity.ConfiguracoesUsuarioActivity"
             android:exported="false"
